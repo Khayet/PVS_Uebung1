@@ -1,0 +1,14 @@
+Teil 1.
+
+	2.) 
+	moka3156@billl07:~/Dokumente/PVS/PVS_Uebung1/build$ ./main
+	Hello from thread 0
+	Number of threads: 1
+	This task took 0.000122 seconds
+
+	3.)
+	Auf unserem Rechner (Lint-Pool) können bis zu 382 Threads gestartet werden. Die Threads werden in variierender Reihenfolge fertig. Je mehr Threads ausgeführt werden, desto länger dauert die Ausführung dieses trivialen Programms, die Laufzeit überschreitet jedoch niemals eine Fünftelsekunde.
+	Wird im Quelltext die Threadanzahl auf '0' gesetzt, werden 8 Threads gestartet, allerdings wird die Anzahl der Threads nicht ausgegeben.
+
+
+
