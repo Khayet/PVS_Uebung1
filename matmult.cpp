@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <omp.h>
 
 // ---------------------------------------------------------------------------
 // allocate space for empty matrix A[row][col]
@@ -48,7 +49,9 @@ void print_mat(float **A, int row, int col, char *tag)
 
 int main(int argc, char *argv[])
 {
-	float **A, **B, **C;	// matrices
+    double start, end;
+    start = omp_get_wtime();
+    float **A, **B, **C;	// matrices
     int d1, d2, d3;         // dimensions of matrices
     int i, j, k;			// loop variables
 
@@ -76,18 +79,19 @@ int main(int argc, char *argv[])
 
     /* serial version of matmult */
     printf("Perform matrix multiplication...\n");
-    //#pragma omp parallel for
+    #pragma omp parallel for collapse(3)
     for (i = 0; i < d1; i++)
        for (j = 0; j < d3; j++)
           for (k = 0; k < d2; k++)
              C[i][j] += A[i][k] * B[k][j];
 
     /* test output */
-    print_mat(A, d1, d2, "A"); 
+    /*print_mat(A, d1, d2, "A"); 
     print_mat(B, d2, d3, "B"); 
     print_mat(C, d1, d3, "C"); 
-
+*/
     printf ("\nDone.\n");
-
+    end = omp_get_wtime();
+    printf("Execution time: %f \n", end - start);
     return 0;
 }
