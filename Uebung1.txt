@@ -1,6 +1,6 @@
 Teil 1.
-
-	2.)
+	1.) Siehe main.cpp
+	2.) Konsolenausgabe:
 	moka3156@billl07:~/Dokumente/PVS/PVS_Uebung1/build$ ./main
 	Hello from thread 0
 	Number of threads: 1
@@ -10,9 +10,19 @@ Teil 1.
 	Auf unserem Rechner (Lint-Pool) können bis zu 382 Threads gestartet werden. Die Threads werden in variierender Reihenfolge fertig. Je mehr Threads ausgeführt werden, desto länger dauert die Ausführung dieses trivialen Programms, die Laufzeit überschreitet jedoch niemals eine Fünftelsekunde.
 	Wird im Quelltext die Threadanzahl auf '0' gesetzt, werden 8 Threads gestartet, allerdings wird die Anzahl der Threads nicht ausgegeben.
 
-bei #pragma omp parallel for collapse(3)
+
+Teil 2.
+	1.) Wir haben uns für diese Stelle entschieden, weil drei geschachtelte for-Schleifen eine Laufzeit von O(N^3) bedeuten, während die Ausgabe der Matrix auf der Konsole nur in O(2) wächst und alle anderen Befehle des Programms in konstanter Zeit ausgeführt werden können, also O(1).
+	2.)
+	3.)
+	bei #pragma omp parallel for collapse(3)
 Parallelisiert:
 Execution time: Execution time: 0.016762
 
 Nicht Parallelisiert:
 Execution time: Execution time: 0.009899
+
+Das heißt, dass unsere parallelisierte Version langsamer ist als die gegebene serielle. Dies mag daran liegen, dass die Operationen in der innersten Schleife, eine Multiplikation und eine Addition, sehr schnell ausgeführt werden können und daher die Aufteilung einzelner Operationen auf verschiedene Threads mehr Overhead erzeugt als durch die Parallelisierung an Effizienz gewonnen wird.
+
+4.)
+
